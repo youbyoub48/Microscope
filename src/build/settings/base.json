@@ -1,0 +1,7 @@
+{
+    "app_name": "camladen",
+    "author": "Ayoub Achoukhi",
+    "main_module": "src/main/python/main.py",
+    "hidden_imports": ["cv2"],
+    "version": "0.0.0"
+}
