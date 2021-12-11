@@ -23,9 +23,15 @@ class MainApp(QWidget):
         self.quit_button = QPushButton("Quit")
         self.quit_button.clicked.connect(self.close)
 
+        self.btn_save = QPushButton("Screenshot")
+        self.btn_save.clicked.connect(self.save)
+
         self.main_layout = QVBoxLayout()
         self.main_layout.addWidget(self.image_label)
         self.main_layout.addWidget(self.quit_button)
+        self.main_layout.addWidget(self.btn_save)
+
+        QShortcut(QKeySequence("s"), self.image_label, self.save)
 
         self.setLayout(self.main_layout)
 
@@ -48,6 +54,13 @@ class MainApp(QWidget):
         frame = cv2.flip(frame, 1)
         image = qimage2ndarray.array2qimage(frame)  #SOLUTION FOR MEMORY LEAK
         self.image_label.setPixmap(QPixmap.fromImage(image))
+        self.frame = frame
+    
+    def save(self):
+        cv2.imwrite(filename='saved_img.jpg', img=self.frame)
+        cv2.imread('saved_img.jpg')
+        cv2.imread('saved_img.jpg', cv2.IMREAD_ANYCOLOR)
+        print("save")
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
