@@ -20,15 +20,11 @@ class MainApp(QWidget):
         self.image_label = QLabel()
         self.image_label.setFixedSize(self.video_size)
 
-        self.quit_button = QPushButton("Quit")
-        self.quit_button.clicked.connect(self.close)
-
         self.btn_save = QPushButton("Screenshot")
         self.btn_save.clicked.connect(self.save)
 
         self.main_layout = QVBoxLayout()
         self.main_layout.addWidget(self.image_label)
-        self.main_layout.addWidget(self.quit_button)
         self.main_layout.addWidget(self.btn_save)
 
         QShortcut(QKeySequence("s"), self.image_label, self.save)
